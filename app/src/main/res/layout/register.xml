@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.lequar.trainingplus.ui.Login"
+    android:id="@+id/register"
+    android:background="@color/cardview_light_background">
+    <include layout="@layout/include_toolbar" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/col1"
+        android:layout_width="@dimen/fifty"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="@dimen/card_margin">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:id="@+id/google"
+            android:layout_marginStart="0dp"
+            android:src="@drawable/gg"
+            android:contentDescription="@string/google" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/col2"
+        android:layout_width="@dimen/fifty"
+        android:layout_height="wrap_content"
+        android:background="@color/cardview_light_background"
+        android:layout_toEndOf="@+id/col1"
+        android:layout_marginStart="10dp"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="@dimen/card_margin">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:id="@+id/facebook"
+            android:src="@drawable/fb"
+            android:gravity="center"
+            android:contentDescription="@string/facebook"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/col1"
+        android:layout_toStartOf="@+id/col2"
+        android:id="@+id/col3"
+        android:background="@color/cardview_light_background"
+        android:paddingLeft="@dimen/activity_horizontal_margin">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/usernameRgt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:inputType="text"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/lastNameRgt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/lastName"
+                android:inputType="text"/>
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/col3"
+        android:layout_alignStart="@+id/col2"
+        android:background="@color/cardview_light_background">
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailRgt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="@string/email" />
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/phoneRgt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:hint="@string/phone" />
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/col3"
+        android:layout_alignParentEnd="true"
+        android:background="@color/cardview_light_background"
+        android:layout_marginTop="10dp"
+        android:id="@+id/col5"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/passRgt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/pass" />
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="@dimen/btnWidth"
+        android:layout_height="@dimen/btnHeight"
+        android:text="@string/btnRegister"
+        android:id="@+id/registerBtn"
+        android:layout_below="@+id/col5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+</RelativeLayout>
