@@ -14,7 +14,6 @@ import android.support.v7.app.NotificationCompat;
 import android.app.NotificationManager;
 import com.lequar.trainingplus.ui.Login;
 import com.lequar.trainingplus.ui.Register;
-
 public class MainActivity extends AppCompatActivity {
 
     Context context = this;
@@ -34,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
             PermissionGPS pGPS = new PermissionGPS();
             pGPS.setContext(this);
             pGPS.setActivity(MainActivity.this);
-            pGPS.permissionGPS(pGPS.getContext());
+            pGPS.permissionGPS();
+            pGPS.permissionCamera();
+            pGPS.permissionWrite();
         }
 
 

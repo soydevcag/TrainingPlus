@@ -127,12 +127,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/col3"
-        android:layout_alignParentEnd="true"
         android:background="@color/cardview_light_background"
         android:layout_marginTop="10dp"
         android:id="@+id/col5"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_alignParentEnd="true">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/passRgt"
@@ -150,13 +150,42 @@
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
 
-    <Button
-        android:layout_width="@dimen/btnWidth"
-        android:layout_height="@dimen/btnHeight"
-        android:text="@string/btnRegister"
-        android:id="@+id/registerBtn"
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/samples_fab"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:fitsSystemWindows="true"
         android:layout_below="@+id/col5"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_alignParentStart="true">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/clean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/regular_offset"
+            android:src="@drawable/ic_replay_white_24dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="@dimen/regular_offset"
+            android:src="@drawable/ic_camera_enhance_white_24dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:layout_margin="@dimen/regular_offset"
+            android:src="@drawable/ic_done" />
+        <ImageView android:id="@+id/camera_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="bottom"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
 
 </RelativeLayout>

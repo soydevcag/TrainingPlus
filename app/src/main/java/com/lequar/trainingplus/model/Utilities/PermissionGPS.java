@@ -15,6 +15,8 @@ import android.widget.Toast;
 public class PermissionGPS extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE_LOCATION = 1;
+    private static final int PERMISSION_REQUEST_CODE_CAMERA = 100;
+    private static final int PERMISSION_REQUEST_CODE_WRITE_STORAGE = 112;
     Context context;
     Activity activity;
 
@@ -34,15 +36,30 @@ public class PermissionGPS extends AppCompatActivity {
         this.context = context;
     }
 
-    public void permissionGPS(Context context){
-        if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, getContext(),getActivity())) {
-            fetchLocationData();
+        public void permissionGPS(){
+            if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, getContext(),getActivity())) {
+                fetchLocationData();
+            } else {
+                requestPermission(Manifest.permission.ACCESS_FINE_LOCATION,PERMISSION_REQUEST_CODE_LOCATION,getContext(),getActivity());
+            }
         }
-        else
-        {
-            requestPermission(Manifest.permission.ACCESS_FINE_LOCATION,PERMISSION_REQUEST_CODE_LOCATION,getContext(),getActivity());
+
+        public void permissionCamera(){
+            if (checkPermission(Manifest.permission.CAMERA, getContext(),getActivity())) {
+                fetchLocationData();
+            } else {
+                requestPermission(Manifest.permission.CAMERA,PERMISSION_REQUEST_CODE_CAMERA,getContext(),getActivity());
+            }
         }
-    }
+
+        public void permissionWrite(){
+            if (checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, getContext(),getActivity())) {
+                fetchLocationData();
+            } else {
+                requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE,PERMISSION_REQUEST_CODE_WRITE_STORAGE,getContext(),getActivity());
+            }
+        }
+
     public void requestPermission(String strPermission, int perCode, Context _c, Activity _a){
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(_a,strPermission)){

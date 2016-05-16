@@ -3,6 +3,7 @@ package com.lequar.trainingplus.ui;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
@@ -19,6 +20,7 @@ import java.util.Map;
 import java.util.HashMap;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.RequestQueue;
+import com.lequar.trainingplus.model.Utilities.CameraTest;
 import com.lequar.trainingplus.ui.base.BaseActivity;
 import com.lequar.trainingplus.model.Utilities.Urls;
 import android.content.DialogInterface;
@@ -53,7 +55,18 @@ public class Register extends BaseActivity {
         }
 
 
-        Button btnRegister = (Button) findViewById(R.id.registerBtn);
+        FloatingActionButton btnStart = (FloatingActionButton)findViewById(R.id.camera);
+        //--- BOTON QUE REDIRECCIONA A OTRA CAMERA--//
+        assert btnStart != null;
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent actionCamera = new Intent(Register.this, CameraTest.class);
+                startActivity(actionCamera);
+            }
+        });
+
+        FloatingActionButton btnRegister = (FloatingActionButton) findViewById(R.id.btnRegister);
         //--- BOTON QUE REDIRECCIONA A OTRA ACTIVIDAD--//
         assert btnRegister != null;
         btnRegister.setOnClickListener(new View.OnClickListener() {
