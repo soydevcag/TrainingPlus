@@ -43,7 +43,7 @@ public class DummyContent {
     /**
      * A map of sample items. Key: sample ID; Value: Item.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<>(5);
+    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<>(6);
 
 
     public void loadData(Context context){
@@ -65,7 +65,13 @@ public class DummyContent {
                         String user = resultado.getJSONObject(i).getString("user");
                         String city = resultado.getJSONObject(i).getString("city");
                         String phone = resultado.getJSONObject(i).getString("phone");
-                        addItem(new DummyItem(String.valueOf(i), R.drawable.p4, "Entrenador "+i, name, user+" - "+city+" - "+phone));
+                        String itera = "";
+                        if(i<16){
+                            itera = Integer.toString(i+1);
+                        }else{
+                            itera = "1";
+                        }
+                        addItem(new DummyItem(String.valueOf(i), "http://api.androidhive.info/json/movies/"+itera+".jpg", "Entrenador "+i, name, user+" - "+city+" - "+phone,user+" - "+city+" - "+phone));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -94,17 +100,19 @@ public class DummyContent {
 
     public static class DummyItem {
         public final String id;
-        public final int photoId;
+        public final String photoId;
         public final String title;
         public final String author;
         public final String content;
+        public final String perfil;
 
-        public DummyItem(String id, int photoId, String title, String author, String content) {
+        public DummyItem(String id, String photoId, String title, String author, String content, String perfil) {
             this.id = id;
             this.photoId = photoId;
             this.title = title;
             this.author = author;
             this.content = content;
+            this.perfil = perfil;
         }
     }
 }

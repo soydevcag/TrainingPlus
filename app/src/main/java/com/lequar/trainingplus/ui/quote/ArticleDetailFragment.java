@@ -49,6 +49,9 @@ public class ArticleDetailFragment extends BaseFragment {
     @Bind(R.id.collapsing_toolbar)
     CollapsingToolbarLayout collapsingToolbar;
 
+    @Bind(R.id.perfilTxt)
+    TextView perfilTxt;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +78,7 @@ public class ArticleDetailFragment extends BaseFragment {
             collapsingToolbar.setTitle(dummyItem.title);
             author.setText(dummyItem.author);
             quote.setText(dummyItem.content);
+            perfilTxt.setText(dummyItem.perfil);
         }
 
         return rootView;
