@@ -1,8 +1,12 @@
 package com.lequar.trainingplus.ui;
 
+import android.app.Activity;
+import android.graphics.drawable.BitmapDrawable;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -12,39 +16,64 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.RequestQueue;
-import com.lequar.trainingplus.model.Utilities.CameraTest;
+import com.lequar.trainingplus.model.Utilities.Main2Activity;
 import com.lequar.trainingplus.ui.base.BaseActivity;
 import com.lequar.trainingplus.model.Utilities.Urls;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.content.Context;
 import android.os.CountDownTimer;
+import android.widget.ImageView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.lequar.trainingplus.R;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Map;
+import android.widget.Toast;
+import android.util.Base64;
 
 public class Register extends BaseActivity {
     Urls urls = new Urls();
     Context context = this;
     String message = null;
     boolean valid = true;
+    private static final int CAMERA_PIC_REQUEST = 1111;
+    private ImageView mImage;
+    private String UPLOAD_URL ="http://appslequar.com/crud_api/app/controller/php/petitions/posts/upload.php";
+    private String KEY_IMAGE = "image";
+    private String KEY_NAME = "name";
+    private Bitmap bitmap;
+    private int PICK_IMAGE_REQUEST = 1;
+    private EditText editTextName;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+
         ActionBar ab = getActionBarToolbar();
         ab.setHomeAsUpIndicator(R.drawable.ic_chevron_left_white_24dp);
         ab.setDisplayHomeAsUpEnabled(true);
@@ -54,16 +83,33 @@ public class Register extends BaseActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-
         FloatingActionButton btnStart = (FloatingActionButton)findViewById(R.id.camera);
         //--- BOTON QUE REDIRECCIONA A OTRA CAMERA--//
-        assert btnStart != null;
+
+
+         assert btnStart != null;
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent actionCamera = new Intent(Register.this, CameraTest.class);
-                startActivity(actionCamera);
+                mImage = (ImageView) findViewById(R.id.camera_image);
+                Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CAMERA_PIC_REQUEST);
+
+                }
+
+        });
+
+        FloatingActionButton btnLoadImage = (FloatingActionButton)findViewById(R.id.loadImage);
+
+        assert btnLoadImage != null;
+        btnLoadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent action = new Intent(Register.this, Main2Activity.class);
+                startActivity(action);
+
             }
+
         });
 
         FloatingActionButton btnRegister = (FloatingActionButton) findViewById(R.id.btnRegister);
@@ -121,7 +167,7 @@ public class Register extends BaseActivity {
                     progressDialog.setMessage("Registrando...");
                     progressDialog.show();
                     String url = urls.getRegisterUser();
-                    StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                    StringRequest postRequest = new StringRequest(Request.Method.GET, url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {
@@ -177,6 +223,31 @@ public class Register extends BaseActivity {
                 }
             }
         });
+    }
+
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_PIC_REQUEST) {
+            //2
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            mImage.setImageBitmap(thumbnail);
+            //3
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            assert thumbnail != null;
+            thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+            //4
+            File file = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
+            try {
+                file.createNewFile();
+                FileOutputStream fo = new FileOutputStream(file);
+                //5
+                fo.write(bytes.toByteArray());
+                fo.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
