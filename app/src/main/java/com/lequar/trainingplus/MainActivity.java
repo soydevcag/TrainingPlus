@@ -1,6 +1,8 @@
 package com.lequar.trainingplus;
 import android.app.Activity;
 
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Context;
@@ -45,16 +47,23 @@ public class MainActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Sonido Notificar
+                Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                //Vibrar Notificar
+                long[] pattern = new long[]{1000,500,1000};
                 NotificationCompat.Builder builder = (NotificationCompat.Builder) new NotificationCompat.Builder(
                         getBaseContext())
                         .setSmallIcon(R.drawable.fb)
                         .setContentTitle("Training")
                         .setContentText("Esto es una notificación")
-                        .setWhen(System.currentTimeMillis());
+                        .setWhen(System.currentTimeMillis())
+                        .setSound(defaultSound)
+                        .setVibrate(pattern);
                 NotificationManager nManager = (NotificationManager) getSystemService(context.NOTIFICATION_SERVICE);
                 nManager.notify(12345, builder.build());
                 Intent actionRegister = new Intent(MainActivity.this, Register.class);
                 startActivity(actionRegister);
+
             }
         });
 

@@ -3,7 +3,7 @@
     package="com.lequar.trainingplus">
 
     <service
-        android:name="com.training.lequar.trainingfit.Model.Utilities.Notifications"
+        android:name="com.training.lequar.trainingfit.model.Utilities.Notifications"
         android:process="remote" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -62,7 +63,6 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDR-05LD4b2rogUTk-TQm7AP2FRMEjgTvE" />
 
-        <activity android:name=".model.Utilities.CameraTest" />
         <activity android:name=".model.Utilities.Main2Activity"></activity>
     </application>
 
